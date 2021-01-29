@@ -1,38 +1,23 @@
 {
-  "name": "agente-campanha-nfp",
+  "name": "with-styled-components",
   "version": "1.0.0",
-  "private": true,
-  "description": "Agente - Campanha NFP",
-  "author": "Andrew Kurauchi",
-  "keywords": [
-    "gatsby"
-  ],
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
-  "license": "0BSD",
   "dependencies": {
-    "@material-ui/core": "^4.11.2",
+    "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
-    "clsx": "^1.1.1",
-    "gatsby": "^2.26.1",
-    "gatsby-image": "^2.8.0",
-    "gatsby-plugin-google-analytics": "^2.8.0",
-    "gatsby-plugin-manifest": "^2.9.1",
-    "gatsby-plugin-offline": "^3.7.1",
-    "gatsby-plugin-react-helmet": "^3.7.0",
-    "gatsby-plugin-sharp": "^2.11.2",
-    "gatsby-plugin-sitemap": "^2.9.0",
-    "gatsby-source-filesystem": "^2.8.1",
-    "gatsby-transformer-sharp": "^2.9.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-helmet": "^6.1.0",
+    "next": "latest",
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-is": "^16.8.0",
     "react-scrollspy": "^3.4.3",
-    "react-swipeable-views": "^0.13.9"
-  }
+    "styled-components": "^5.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.8.0"
+  },
+  "license": "MIT"
 }

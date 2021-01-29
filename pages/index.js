@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import Scrollspy from 'react-scrollspy'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { Helmet } from "react-helmet";
+import Head from 'next/head'
 import clsx from 'clsx'
-import { makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
+import { makeStyles, ThemeProvider } from '@material-ui/core/styles'
 import Accordion from '@material-ui/core/Accordion'
 import AccordionSummary from '@material-ui/core/AccordionSummary'
 import AccordionDetails from '@material-ui/core/AccordionDetails'
@@ -30,54 +30,7 @@ import InstagramIcon from '@material-ui/icons/Instagram'
 import LanguageIcon from '@material-ui/icons/Language';
 import MailOutlineIcon from '@material-ui/icons/MailOutline'
 import MenuIcon from '@material-ui/icons/Menu'
-
-import SEO from "../components/seo"
-
-import "../styles/global.css"
-import IntroImg from "../images/fundo.jpg"
-import IntroImgBig from "../images/fundo-orig.jpg"
-import LogoInv from "../images/logo-inv.png"
-import FotoAgente from "../images/foto-agente.png"
-import Celular from "../images/celular.png"
-import Pc from "../images/pc.png"
-import CelPasso1Icone from "../images/celular-passo1-icone.png"
-import CelPasso1 from "../images/celular-passo1.png"
-import CelPasso2Icone from "../images/celular-passo2-icone.png"
-import CelPasso2 from "../images/celular-passo2.png"
-import CelPasso3Icone from "../images/celular-passo3-icone.png"
-import CelPasso3 from "../images/celular-passo3.png"
-import CelPasso4Icone from "../images/celular-passo4-icone.png"
-import CelPasso4 from "../images/celular-passo4.png"
-import CelPasso5Icone from "../images/celular-passo5-icone.png"
-import CelPasso5 from "../images/celular-passo5.png"
-import CelPasso6Icone from "../images/celular-passo6-icone.png"
-import CelPasso6 from "../images/celular-passo6.png"
-import PCPasso1 from "../images/pc-passo1.png"
-import PCPasso6 from "../images/pc-passo6.png"
-import Logo0Agente from "../images/00-Agente.jpg"
-import Logo1PapoJovem from "../images/01-PAPO-Jovem.jpg"
-import Logo2Girassol from "../images/02-Espaco-Girassol.jpg"
-import Logo3Mova from "../images/03-MOVA.jpg"
-import Logo4AcompanhamentoNutricional from "../images/04-Acompanhamento-Nutricional.jpg"
-import Logo6AgenteJoga from "../images/06-Agente-Joga.jpg"
-import Logo7VozDAgente from "../images/07-Voz-DAgente.jpg"
-import Logo8Delinearte from "../images/08-Delinearte.jpg"
-
-// Cores
-const vermelho = "#990000"
-const branco = "#ffffff"
-const amarelo = "#ffd900"
-const amareloClaro = "#ffe760"
-const laranja = "#ef8332"
-const preto = "#161a1a"
-const pretoTransparente = "#161a1a99"
-const cinza = "#333333"
-const lilas = "#e6e6ff"
-const bege = "#ebf2d9"
-// Fontes
-const barlow = "'Barlow Condensed', sans-serif"
-const cuprum = "'Cuprum', sans-serif"
-const montserrat = "'Montserrat', sans-serif"
+import theme, { vermelho, branco, amarelo, amareloClaro, laranja, preto, pretoTransparente, cinza, lilas, bege, barlow, cuprum, montserrat } from '../src/theme';
 
 // Seções
 const intro = "intro"
@@ -94,8 +47,8 @@ const slideDecks = [
   // Celular
   [
     {
-      icone: CelPasso1Icone,
-      passo: CelPasso1,
+      icone: "/images/celular-passo1-icone.png",
+      passo: "/images/celular-passo1.png",
       titulo: "Acesse o site da receita",
       texto: <>
         <SlideText>Acesse/crie sua conta (clique no link) <Link>www.nfp.fazenda.sp.gov.br/login</Link></SlideText>
@@ -103,8 +56,8 @@ const slideDecks = [
       </>,
     },
     {
-      icone: CelPasso2Icone,
-      passo: CelPasso2,
+      icone: "/images/celular-passo2-icone.png",
+      passo: "/images/celular-passo2.png",
       titulo: "Acesse XXXXXXXXXXXX",
       texto: <>
         <SlideText>Se estiver no site, clique em "Entidades" e depois em "Doação de cupons com CPF (automático)".</SlideText>
@@ -112,8 +65,8 @@ const slideDecks = [
       </>,
     },
     {
-      icone: CelPasso3Icone,
-      passo: CelPasso3,
+      icone: "/images/celular-passo3-icone.png",
+      passo: "/images/celular-passo3.png",
       titulo: "Acesse XXXXXXXXXXXX",
       texto: <>
         <SlideText>No campo "Período", selecione o prazo pelo qual deseja doar suas notas.</SlideText>
@@ -121,8 +74,8 @@ const slideDecks = [
       </>,
     },
     {
-      icone: CelPasso4Icone,
-      passo: CelPasso4,
+      icone: "/images/celular-passo4-icone.png",
+      passo: "/images/celular-passo4.png",
       titulo: "Acesse XXXXXXXXXXXX",
       texto: <>
         <SlideText>Procure a ASSOCIACAO METODISTA LIVRE AGENTE com nosso CNPJ 04.955.194/0001-30</SlideText>
@@ -130,16 +83,16 @@ const slideDecks = [
       </>,
     },
     {
-      icone: CelPasso5Icone,
-      passo: CelPasso5,
+      icone: "/images/celular-passo5-icone.png",
+      passo: "/images/celular-passo5.png",
       titulo: "Pronto!",
       texto: <>
         <SlideText>Pronto! Agora quando fizer suas compras, não se esqueça de pedir o CPF e seus créditos irão para a AGENTE de forma automática!</SlideText>
       </>,
     },
     {
-      icone: CelPasso6Icone,
-      passo: CelPasso6,
+      icone: "/images/celular-passo6-icone.png",
+      passo: "/images/celular-passo6.png",
       titulo: "Compartilhe",
       texto: <>
         <SlideText>Compartilhe essa ideia com seus pais, irmãos, primos, amigos da facul, tios, vizinhos e vamos juntos ser agentes de transformação!</SlideText>
@@ -149,8 +102,8 @@ const slideDecks = [
   // PC
   [
     {
-      icone: CelPasso1Icone,
-      passo: PCPasso1,
+      icone: "/images/celular-passo1-icone.png",
+      passo: "/images/pc-passo1.png",
       titulo: "Acesse o site da receita",
       texto: <>
         <SlideText>Acesse/crie sua conta (clique no link) <Link>www.nfp.fazenda.sp.gov.br/login</Link></SlideText>
@@ -158,8 +111,8 @@ const slideDecks = [
       </>,
     },
     {
-      icone: CelPasso2Icone,
-      passo: PCPasso1,
+      icone: "/images/celular-passo2-icone.png",
+      passo: "/images/pc-passo1.png",
       titulo: "Acesse XXXXXXXXXXXX",
       texto: <>
         <SlideText>Se estiver no site, clique em "Entidades" e depois em "Doação de cupons com CPF (automático)".</SlideText>
@@ -167,8 +120,8 @@ const slideDecks = [
       </>,
     },
     {
-      icone: CelPasso3Icone,
-      passo: PCPasso1,
+      icone: "/images/celular-passo3-icone.png",
+      passo: "/images/pc-passo1.png",
       titulo: "Acesse XXXXXXXXXXXX",
       texto: <>
         <SlideText>No campo "Período", selecione o prazo pelo qual deseja doar suas notas.</SlideText>
@@ -176,8 +129,8 @@ const slideDecks = [
       </>,
     },
     {
-      icone: CelPasso4Icone,
-      passo: PCPasso1,
+      icone: "/images/celular-passo4-icone.png",
+      passo: "/images/pc-passo1.png",
       titulo: "Acesse XXXXXXXXXXXX",
       texto: <>
         <SlideText>Procure a ASSOCIACAO METODISTA LIVRE AGENTE com nosso CNPJ 04.955.194/0001-30</SlideText>
@@ -185,16 +138,16 @@ const slideDecks = [
       </>,
     },
     {
-      icone: CelPasso5Icone,
-      passo: PCPasso1,
+      icone: "/images/celular-passo5-icone.png",
+      passo: "/images/pc-passo1.png",
       titulo: "Pronto!",
       texto: <>
         <SlideText>Pronto! Agora quando fizer suas compras, não se esqueça de pedir o CPF e seus créditos irão para a AGENTE de forma automática!</SlideText>
       </>,
     },
     {
-      icone: CelPasso6Icone,
-      passo: PCPasso6,
+      icone: "/images/celular-passo6-icone.png",
+      passo: "/images/pc-passo6.png",
       titulo: "Compartilhe",
       texto: <>
         <SlideText>Compartilhe essa ideia com seus pais, irmãos, primos, amigos da facul, tios, vizinhos e vamos juntos ser agentes de transformação!</SlideText>
@@ -206,49 +159,49 @@ const slideDecks = [
 const projetos = [
   {
     nome: "Agente",
-    logo: Logo0Agente,
+    logo: "/images/00-Agente.jpg",
     descricao: "Animação com todos os nossos projetos",
     link: "https://youtu.be/avonElF7lnk",
   },
   {
     nome: "PAPO Jovem",
-    logo: Logo1PapoJovem,
+    logo: "/images/01-PAPO-Jovem.jpg",
     descricao: "Programa de Apoio ao Jovem",
     link: "https://youtu.be/8c1bP__mmk4",
   },
   {
     nome: "Espaço Girassol",
-    logo: Logo2Girassol,
+    logo: "/images/02-Espaco-Girassol.jpg",
     descricao: "Contra-turno para crianças de 6-12 anos",
     link: "https://youtu.be/cYOENq6R1_Y",
   },
   {
     nome: "MOVA",
-    logo: Logo3Mova,
+    logo: "/images/03-MOVA.jpg",
     descricao: "Educação de jovens e adultos",
     link: "https://youtu.be/HEupPwGm8Pw",
   },
   {
     nome: "Acompanhamento Nutricional",
-    logo: Logo4AcompanhamentoNutricional,
+    logo: "/images/04-Acompanhamento-Nutricional.jpg",
     descricao: "Acompanhamento físico e nutricional (parceria com Pastoral da Criança)",
     link: "",
   },
   {
     nome: "Agente Joga",
-    logo: Logo6AgenteJoga,
+    logo: "/images/06-Agente-Joga.jpg",
     descricao: "Aulas de futebol para crianças e adolescentes",
     link: "https://youtu.be/ClyW4t87uPQ",
   },
   {
     nome: "Voz D'Agente",
-    logo: Logo7VozDAgente,
+    logo: "/images/07-Voz-DAgente.jpg",
     descricao: "Aulas e apresentações musicais",
     link: "https://youtu.be/_8Zb7PjCgrI",
   },
   {
     nome: "Delinearte",
-    logo: Logo8Delinearte,
+    logo: "/images/08-Delinearte.jpg",
     descricao: "Aulas de artesanato para mulheres",
     link: "https://youtu.be/8kWxfSUMUt4",
   },
@@ -268,15 +221,6 @@ const menuItems = [
     anchor: faq,
   },
 ]
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: vermelho,
-    },
-  },
-})
-
 
 const useStyles = makeStyles((theme) => {
   // Medidas
@@ -351,7 +295,7 @@ const useStyles = makeStyles((theme) => {
       height: "60vh",
       display: "flex",
       flexDirection: "column",
-      backgroundImage: `url(${IntroImg})`,
+      backgroundImage: `url("/images/fundo.jpg")`,
       backgroundSize: "auto 100%",
       backgroundPosition: "left bottom",
       backgroundRepeat: "no-repeat",
@@ -362,7 +306,7 @@ const useStyles = makeStyles((theme) => {
         marginTop: appBarHeight,
         width: "50vw",
         height: `calc(100vh - ${appBarHeight}px)`,
-        backgroundImage: `url(${IntroImgBig})`,
+        backgroundImage: `url("/images/fundo-orig.jpg")`,
         backgroundPosition: "center bottom",
       },
     },
@@ -788,6 +732,9 @@ const useStyles = makeStyles((theme) => {
         }
       }
     },
+    accordionDetails: {
+      display: "block",
+    },
   })
 });
 
@@ -919,7 +866,7 @@ const IndexPage = () => {
             <Grid item xs={12} className={classes.flex}>
               <TutorialTabButton
                 label="Celular"
-                image={Celular}
+                image="/images/celular.png"
                 selected={currentTab === 0}
                 onClick={(event) => handleTabChange(event, 0)}
               />
@@ -927,7 +874,7 @@ const IndexPage = () => {
             <Grid item xs={12} className={classes.flex}>
               <TutorialTabButton
                 label="Computador"
-                image={Pc}
+                image="/images/pc.png"
                 selected={currentTab === 1}
                 onClick={(event) => handleTabChange(event, 1)}
               />
@@ -1005,14 +952,13 @@ const IndexPage = () => {
 
   return (
     <main>
-      <SEO title="Agente - Campanha NFP" description="Transforme seus gastos em impacto social" />
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Helmet>
+        <Head>
+          <title>Agente - Campanha NFP</title>
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=Cuprum:wght@700&family=Montserrat:wght@100;400;700;800&display=swap" rel="stylesheet" />
-        </Helmet>
-        <title>Agente - Campanha NFP</title>
+        </Head>
         <AppBar className={classes.appBar} position={isMobile ? "absolute" : "fixed"}>
           <Typography variant="h5" className={classes.appTitle}>
             <span className={clsx(classes.titleText, classes.titleMain)}>
@@ -1063,7 +1009,7 @@ const IndexPage = () => {
               <Typography className={classes.introBody}>E ajuda muita gente!</Typography>
             </div>
             <Box className={classes.introLogo}>
-              <img src={LogoInv} alt="Logo da Agente" className={classes.introLogoImg} />
+              <img src="/images/logo-inv.png" alt="Logo da Agente" className={classes.introLogoImg} />
             </Box>
           </Box>
         </section>
@@ -1081,7 +1027,7 @@ const IndexPage = () => {
             <Separator />
             <Typography className={classes.titulo}>Quem é a AGENTE?</Typography>
             <Box className={classes.responsiveContainer}>
-              <img src={FotoAgente} alt="Foto da fachada da Agente" className={classes.foto} />
+              <img src="/images/foto-agente.png" alt="Foto da fachada da Agente" className={classes.foto} />
               <Box className={classes.quemSomosContainer}>
                 <Typography>
                   Somos uma ONG que atua, <span className={classes.highlight}>desde <b>1993</b>,</span> em <span className={classes.highlight}><b>São Remo</b>,</span> onde moram cerca de 8 mil pessoas e fica ao lado da USP.
@@ -1118,7 +1064,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>1. O que é o programa da Nota Fiscal Paulista?</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>R: É um programa de estimulo à cidadania fiscal no Estado de São Paulo, que tem por objetivo estimular os consumidores a exigirem a entrega do documento fiscal na hora da compra. Além disso, visa gerar créditos aos consumidores, aos cidadãos e às empresas do Estado.</Typography>
               </AccordionDetails>
             </Accordion>
@@ -1131,7 +1077,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>2. Fiz a doação automática, mas quero parar. Posso cancelar?</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>R: Sim, você pode cancelar a doação automática de suas notas fiscais a qualquer momento. Basta acessar sua conta e parar a doação.</Typography>
               </AccordionDetails>
             </Accordion>
@@ -1144,7 +1090,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>3. Não tenho conta. Como posso criar uma?</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>R: Acesse o site da <Link href="https://www.nfp.fazenda.sp.gov.br/login.aspx">secretaria da fazenda</Link> e clicar em "Novos cadastros: pessoa física".</Typography>
                 <Typography className={classes.resposta}>Se estiver no celular, você também pode baixar o aplicativo oficial da Nota Fiscal Paulista na Play Store (Android) ou App Store (iPhone) e clicar em "Registre sua conta"</Typography>
               </AccordionDetails>
@@ -1158,7 +1104,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>4. Criei minha conta no passado, mas nunca usei</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>R: Se esse for o seu caso, você precisará realizar uma transferência de qualquer valor para sua conta. Se você não tiver nenhum saldo para transferir, basta pedir para inserir o CPF nas compras para gerar créditos.</Typography>
               </AccordionDetails>
             </Accordion>
@@ -1171,7 +1117,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>5. Preciso gastar muito para gerar mais créditos?</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>R: Não, qualquer nota fiscal doada pode gerar até R$ 265,30 em créditos para a AGENTE! Isso significa que um cafezinho na padaria de R$ 5,00 pode se transformar numa doação de R$ 265,30 para a AGENTE.
           Assim, o importante é sempre pedir o CPF na nota independente do valor da compra</Typography>
               </AccordionDetails>
@@ -1185,7 +1131,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>6. Como é calculado o valor da doação?</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>R: O valor da doação está relacionado ao imposto de ICMS pago pelo estabelecimento no mês que você efetuou a sua compra. Você pode conferir as regras de cálculo no site da receita da fazenda. Clique aqui.</Typography>
               </AccordionDetails>
             </Accordion>
@@ -1198,7 +1144,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>7. A receita federal utilizará as notas fiscais doadas para me monitorar?</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>R: Não. A receita federal possui seu próprio banco de dados para fiscalização e não precisa das informações do programa da Nota Fiscal Paulista</Typography>
               </AccordionDetails>
             </Accordion>
@@ -1211,7 +1157,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>8. Como o dinheiro doado é utilizado pela AGENTE?</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>R: Todo dinheiro arrecado é utilizado para desenvolver os projetos da AGENTE. Cerca de 80% dos recursos vão para a equipe (educadores, cozinha, limpeza, administrativo e coordenadores) e os 20% restantes são despesas gerais (ex. materiais pedagógicos, alimentação, produtos de limpeza, escritório de contabilidade, contas de água e luz etc)</Typography>
                 <Typography className={classes.resposta}>Desde 2012, a AGENTE apresenta as demonstrações financeiras com os resultados do ano. Você pode conferi-las no nosso site</Typography>
               </AccordionDetails>
@@ -1225,7 +1171,7 @@ const IndexPage = () => {
               >
                 <Typography className={classes.pergunta}>9. Ainda ficou alguma dúvida?</Typography>
               </AccordionSummary>
-              <AccordionDetails>
+              <AccordionDetails className={classes.accordionDetails}>
                 <Typography className={classes.resposta}>Escreva para <a href="mailto:comunicacao@agente.org.br">comunicacao@agente.org.br</a> e teremos o maior prazer em falar com você!</Typography>
               </AccordionDetails>
             </Accordion>
